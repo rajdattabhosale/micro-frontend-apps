@@ -11,16 +11,16 @@ const prodConfig = {
     filename: "[name].[contenthash].js",
     publicPath: "/container/latest/",
   },
-  // plugins: [
-  //     new ModuleFederationPlugin({
-  //         name: 'container',
-  //         remotes: {
-  //             helloReact: `helloReact@helloReact/latest/remoteEntry.js`,
-  //             helloVue: `helloVue@helloVue/latest/remoteEntry.js`
-  //         },
-  //         shared: packageJson.dependencies
-  //     })
-  // ]
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "container",
+      remotes: {
+        helloReact: `helloReact@helloReact/latest/remoteEntry.js`,
+        helloVue: `helloVue@helloVue/latest/remoteEntry.js`,
+      },
+      shared: packageJson.dependencies,
+    }),
+  ],
 };
 
 module.exports = merge(commonConfig, prodConfig);
